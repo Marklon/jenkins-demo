@@ -13,12 +13,12 @@ pipeline {
     stage("first stage") {
       // Every stage must have a steps block containing at least one step.
       steps {
-          echo hi
+          echo "hi"
         }
       }    
     stage('second stage') {
       steps {
-        echo $FOO
+        echo "$FOO"
       }
     }
     stage('third stage') {
