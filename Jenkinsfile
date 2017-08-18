@@ -1,47 +1,52 @@
 // A Declarative Pipeline is defined within a 'pipeline' block.
 pipeline {
-  agent {
-    label ""
-  }
-  
+    // the agent that the tasks will execute on
+    // set by { label = "name" } or any 
+  agent any
+ 
+  // set an environment variable
   environment {
     FOO = "BAR"
   }
-  
+ 
+  // the pipeline consists of one or more stages
   stages {
-    // At least one stage is required.
-    stage("first stage") {
+    stage("Stage 1") {
       // Every stage must have a steps block containing at least one step.
       steps {
-          echo "hi"
+          echo "Step 1"
         }
       }    
-    stage('second stage') {
+    
+    stage("State 2") {
       steps {
+        // use the evironment variable defined above
         echo "$FOO"
       }
     }
-    stage('third stage') {
+
+    stage("Stage 3") {
       steps {
-        parallel(one: {
-                  echo "I'm on the first branch!"
+        // steps can have actions that are run in parallel
+        parallel(
+            one: {
+                  echo "Parallel 1"
                  },
-                 two: {
-                   echo "I'm on the second branch!"
+                 
+            two: {
+                   echo "Parallel 2"
                  },
-                 three: {
-                   echo "I'm on the third branch!"
-                   echo "But you probably guessed that already."
+            three: {
+                   echo "Parallel 3"
                  })
       }
     }
   }
   
   post {
-    // Always runs. And it runs before any of the other post conditions.
+    // Always runs and runs before any of the other post conditions
     always {
-      // Let's wipe out the workspace before we finish!
-      deleteDir()
+        echo "Cleaning up..."
     }
    }
 }
