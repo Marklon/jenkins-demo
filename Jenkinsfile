@@ -29,14 +29,14 @@ pipeline {
     stage("Run Browser Tests") {
       steps {
         parallel(
-            one: {
+            Chrome: {
                   echo "Testing on Chrome"
                  },
                  
-            two: {
+            Firefox: {
                    echo "Testing on Firefox"
                  },
-            three: {
+            Opera: {
                    echo "Testing on Opera"
                  })
       }
