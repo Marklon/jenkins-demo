@@ -6,38 +6,38 @@ pipeline {
  
   // set an environment variable
   environment {
-    FOO = "BAR"
+    CONFIG = "configuration_99_XYZ"
   }
  
   // the pipeline consists of one or more stages
   stages {
-    stage("Stage 1") {
+    stage("Prepare Test Environment") {
       // Every stage must have a steps block containing at least one step.
       steps {
-          echo "Step 1"
+          echo "Preparing the environment ..."
+          echo "$CONFIG"
         }
       }    
     
-    stage("State 2") {
+    stage("Build Application") {
       steps {
-        // use the evironment variable defined above
-        echo "$FOO"
+          echo "Building the application ... "
+          echo "zzzzzzzzzzzzzzzzzzzzzz       "
       }
     }
 
-    stage("Stage 3") {
+    stage("Run Browser Tests") {
       steps {
-        // steps can have actions that are run in parallel
         parallel(
             one: {
-                  echo "Parallel 1"
+                  echo "Testing on Chrome"
                  },
                  
             two: {
-                   echo "Parallel 2"
+                   echo "Testing on Firefox"
                  },
             three: {
-                   echo "Parallel 3"
+                   echo "Testing on Opera"
                  })
       }
     }
@@ -46,7 +46,7 @@ pipeline {
   post {
     // Always runs and runs before any of the other post conditions
     always {
-        echo "Cleaning up..."
+        echo "Cleaning up ..."
     }
    }
 }
