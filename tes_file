@@ -1,0 +1,7 @@
+28 22:36:35 ip-172-31-6-32 systemd[1]: Stopped LSB: Start Jenkins at boot time.
+Oct 28 22:36:35 ip-172-31-6-32 systemd[1]: Starting LSB: Start Jenkins at boot time...
+Oct 28 22:36:35 ip-172-31-6-32 jenkins[17168]:  * Starting Jenkins Automation Server jenkins
+Oct 28 22:36:35 ip-172-31-6-32 su[17188]: Successful su for jenkins by root
+Oct 28 22:36:35 ip-172-31-6-32 su[17188]: + ??? root:jenkins
+Oct 28 22:36:35 ip-172-31-6-32 su[17188]: pam_unix(su:session): session opened for user jenkins by (uid=0)
+Oct 28 22:36:36 ip-172-31-6-32 jenkins[17168]:    ...done.
